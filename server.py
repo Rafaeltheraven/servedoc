@@ -7,7 +7,6 @@ import crawler
 @route('/')
 def root():
 	dirmap = crawler.get_directory_map()
-	url = config.get_url()
 	html = '''
 		<!DOCTYPE html>
 		<html>
@@ -16,8 +15,8 @@ def root():
 			</head>
 			<body>
 				<ul>
-					%for file in dirmap:
-						<li>{{file}}</li>
+					%for key, value in dirmap.iteritems():
+						<li><a href='{{key + "/" + value}}'>{{value}}</a></li>
 					%end
 				</ul>
 			</body>
