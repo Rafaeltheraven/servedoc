@@ -1,4 +1,4 @@
-from bottle import route, run, template
+from bottle import route, run, template, HTTPResponse
 import config
 import os
 import markdown2
@@ -11,7 +11,7 @@ def root():
 		<!DOCTYPE html>
 		<html>
 			<head>
-				<title> Documentation </title>
+				<title>Documentation</title>
 			</head>
 			<body>
 				<ul>
@@ -29,13 +29,39 @@ def root():
 	'''
 	return template(html, dirmap=dirmap)
 
+def show_dir(path):
+	dirmap = crawler.get_directory_map()
+	subdir = dirmap[path]
+	html = '''
+		<!DOCTYPE html>
+		<html>
+			<head>
+				<title>Documentation</title>
+			</head>
+			<body>
+				<h3>{{path}}</h3>
+				<ul>
+					%for value in subdir:
+						<li><a href={{path + "/" + value}}>{{value}}</a></li>
+					%end
+				</ul>
+			</body>
+		</html>
+	'''
+	return template(html, path=path, subdir=subdir)
+
 @route('/<file:path>')
 def find_file(file):
 	path = os.path.join('/', file)
-	with open(path, 'r') as f:
-		data = f.read()
-	md = markdown2.markdown(data)
-	return md
+	if os.path.isfile(path):
+		with open(path, 'r') as f:
+			data = f.read()
+		md = markdown2.markdown(data)
+		return md
+	elif os.path.isdir(path):
+		return show_dir(path)
+	else:
+		return HTTPResponse(status=404)
 
 if __name__ == '__main__':
 	host = config.get_value('host')
