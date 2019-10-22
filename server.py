@@ -15,8 +15,10 @@ def root():
 			</head>
 			<body>
 				<ul>
-					%for key, value in dirmap.items():
-						<li><a href='{{key + "/" + value}}'>{{value}}</a></li>
+					%for key, values in dirmap.items():
+						%for value in values:
+							<li><a href='{{key + "/" + value}}'>{{value}}</a></li>
+						%end
 					%end
 				</ul>
 			</body>
