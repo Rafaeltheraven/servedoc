@@ -93,3 +93,5 @@ def find_file(file):
 if __name__ == '__main__':
 	port = config.get_value('port')
 	run(host='localhost', port=port)
+else:
+	app = application = default_app()
