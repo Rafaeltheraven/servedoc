@@ -16,9 +16,12 @@ def root():
 			<body>
 				<ul>
 					%for key, values in dirmap.items():
+						<li>{{key}}</li>
+						<ul>
 						%for value in values:
 							<li><a href='{{key + "/" + value}}'>{{value}}</a></li>
 						%end
+						</ul>
 					%end
 				</ul>
 			</body>
@@ -28,9 +31,7 @@ def root():
 
 @route('/<file:path>')
 def find_file(file):
-	root = config.get_value('root')
-	path = os.path.join(root, file)
-	with open(path, 'r') as f:
+	with open(file, 'r') as f:
 		data = f.read()
 	md = markdown2.markdown(data)
 	return md
