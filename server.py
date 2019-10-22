@@ -31,7 +31,8 @@ def root():
 
 @route('/<file:path>')
 def find_file(file):
-	with open(file, 'r') as f:
+	path = os.path.join('/', file)
+	with open(path, 'r') as f:
 		data = f.read()
 	md = markdown2.markdown(data)
 	return md
