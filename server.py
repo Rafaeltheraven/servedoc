@@ -18,7 +18,7 @@ def root():
 					%for key, values in sorted(dirmap.items()):
 						<li>{{key}}</li>
 						<ul>
-						%for value in values:
+						%for value in sorted(values):
 							<li><a href='{{key + "/" + value}}'>{{value}}</a></li>
 						%end
 						</ul>
@@ -28,6 +28,30 @@ def root():
 		</html>
 	'''
 	return template(html, dirmap=dirmap)
+
+def create_html(body):
+	title = config.get_value('title')
+	css = config.get_value('css')
+	html = '''
+		<!DOCTYPE html>
+		<html>
+			<head>
+				<title>''' + title + '''</title>
+	'''
+	if css:
+		html += '''
+			<link rel='stylesheet' type='text/css' href="''' + css + '''"
+		'''
+	html ++ '''
+			</head>
+			<body>
+	'''
+	html += body
+	html += '''
+			</body>
+		</html>
+	'''
+	return html
 
 def show_dir(path):
 	dirmap = crawler.get_directory_map()
@@ -67,6 +91,5 @@ def find_file(file):
 		return HTTPResponse(status=404)
 
 if __name__ == '__main__':
-	host = config.get_value('host')
 	port = config.get_value('port')
 	run(host='localhost', port=port)
