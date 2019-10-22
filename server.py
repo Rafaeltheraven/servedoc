@@ -1,4 +1,4 @@
-from bottle import route, run, template, HTTPResponse
+from bottle import route, run, template, HTTPResponse, default_app
 import config
 import os
 import markdown2
