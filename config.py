@@ -5,9 +5,10 @@ import os
 def create_config(path='config.ini'):
 	parser = configparser.ConfigParser()
 	parser['DEFAULT'] = {
-		'root': './',
-		'host': 'locahost',
-		'port': 8080
+		'root': '/doc/',
+		'port': 8080,
+		'title': 'Documentation',
+		'css': None
 	}
 	parser['CONFIG'] = {}
 	with open(path, 'w') as file:
