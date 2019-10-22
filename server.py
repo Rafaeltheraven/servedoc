@@ -15,7 +15,7 @@ def root():
 			</head>
 			<body>
 				<ul>
-					%for key, value in dirmap.iteritems():
+					%for key, value in dirmap.items():
 						<li><a href='{{key + "/" + value}}'>{{value}}</a></li>
 					%end
 				</ul>
@@ -36,4 +36,4 @@ def find_file(file):
 if __name__ == '__main__':
 	host = config.get_value('host')
 	port = config.get_value('port')
-	run(host=host, port=port)
+	run(host='localhost', port=port)
