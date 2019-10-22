@@ -15,7 +15,7 @@ def root():
 			</head>
 			<body>
 				<ul>
-					%for key, values in dirmap.items():
+					%for key, values in sorted(dirmap.items()):
 						<li>{{key}}</li>
 						<ul>
 						%for value in values:
