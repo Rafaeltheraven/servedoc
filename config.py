@@ -3,7 +3,7 @@ import configparser
 import os
 
 def create_config(path='config.ini'):
-	parser = get_parser()
+	parser = configparser.ConfigParser()
 	parser['DEFAULT'] = {
 		'root': './',
 		'port': 8080
