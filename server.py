@@ -31,7 +31,7 @@ def root():
 
 def show_dir(path):
 	dirmap = crawler.get_directory_map()
-	subdir = dirmap[path]
+	subdir = dirmap[path.strip()]
 	html = '''
 		<!DOCTYPE html>
 		<html>
