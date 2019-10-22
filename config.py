@@ -6,6 +6,7 @@ def create_config(path='config.ini'):
 	parser = configparser.ConfigParser()
 	parser['DEFAULT'] = {
 		'root': './',
+		'host': 'locahost',
 		'port': 8080
 	}
 	parser['CONFIG'] = {}
@@ -23,6 +24,6 @@ def get_root():
 	parser = get_parser()
 	return parser['CONFIG']['root']
 
-def get_url():
+def get_hosting_params():
 	parser = get_parser()
-	return parser['CONFIG']['url']
+	return parser['CONFIG']['host'], parser['CONFIG']['port']

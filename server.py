@@ -34,4 +34,5 @@ def find_file(file):
 	return md
 
 if __name__ == '__main__':
-	run(host='localhost', port=8080)
+	host, port = config.get_hosting_params()
+	run(host=host, port=port)
