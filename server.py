@@ -31,7 +31,10 @@ def root():
 
 def show_dir(path):
 	dirmap = crawler.get_directory_map()
-	subdir = dirmap[path.rstrip('/')]
+	try:
+		subdir = dirmap[path.rstrip('/')]
+	except:
+		subdir = dirmap[path] # Why is this not consitent
 	html = '''
 		<!DOCTYPE html>
 		<html>
