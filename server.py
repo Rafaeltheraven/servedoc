@@ -22,7 +22,7 @@ def root():
 			</body>
 		</html>
 	'''
-	return template(html, dirmap)
+	return template(html, dirmap=dirmap)
 
 @route('/<file:path>')
 def find_file(file):
