@@ -20,10 +20,9 @@ def get_parser(config='config.ini'):
 	parser.read(config)
 	return parser
 
-def get_root():
+def get_value(value):
 	parser = get_parser()
-	return parser['CONFIG']['root']
-
-def get_hosting_params():
-	parser = get_parser()
-	return parser['CONFIG']['host'], parser['CONFIG']['port']
+	try:
+		return parser['CONFIG'][value]
+	except:
+		return parser['DEFAULT'][value]

@@ -26,7 +26,7 @@ def root():
 
 @route('/<file:path>')
 def find_file(file):
-	root = config.get_root()
+	root = config.get_value('root')
 	path = os.path.join(root, file)
 	with open(path, 'r') as f:
 		data = f.read()
@@ -34,5 +34,6 @@ def find_file(file):
 	return md
 
 if __name__ == '__main__':
-	host, port = config.get_hosting_params()
+	host = config.get_value('host')
+	port = config.get_value('port')
 	run(host=host, port=port)
