@@ -3,7 +3,7 @@ import os
 import config
 
 def get_directory_map():
-	start = config.get_root()
+	start = config.get_value('root')
 	result = {}
 	for root, dirs, files in os.walk(start):
 		for subdir in dirs:
