@@ -79,14 +79,15 @@ def show_dir(path):
 
 @route('/<file:path>')
 def find_file(file):
-	path = os.path.join('/', file)
+	root = config.get_value('root')
+	path = os.path.join(root, file)
 	if os.path.isfile(path):
 		with open(path, 'r') as f:
 			data = f.read()
 		md = markdown2.markdown(data)
 		return md
 	elif os.path.isdir(path):
-		return show_dir(path)
+		return show_dir(file)
 	else:
 		return HTTPResponse(status=404)
 

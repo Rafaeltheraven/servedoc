@@ -9,6 +9,7 @@ def get_directory_map():
 		for subdir in dirs:
 			result[os.path.join(root, subdir)] = []
 		result[root] = files
+	result = {os.path.relpath(k, start): v for k, v in result.items()}
 	return result
 
 if __name__ == '__main__':
