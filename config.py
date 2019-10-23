@@ -27,3 +27,6 @@ def get_value(value):
 		return parser['CONFIG'][value]
 	except:
 		return parser['DEFAULT'][value]
+
+if __name__ == '__main__':
+	create_config()
