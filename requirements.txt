@@ -1,2 +1,2 @@
 bottle==0.12.19
-markdown2==2.3.8
+markdown2==2.4.0
